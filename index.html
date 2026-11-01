@@ -267,9 +267,9 @@ var P={1:["+79950623264","+7 (995) 062-32-64"],2:["+79511726899","+7 (951) 172-6
 document.querySelectorAll("[data-phone]").forEach(function(a){var p=P[a.getAttribute("data-phone")];if(p)a.setAttribute("href","tel:"+p[0])});
 document.querySelectorAll("[data-phone-text]").forEach(function(s){var p=P[s.getAttribute("data-phone-text")];if(p)s.textContent=p[1]});
 var sl=document.getElementById("slides"),tb=document.querySelectorAll(".tab");
-function sel(i){tb.forEach(function(t,j){t.setAttribute("aria-selected",i===j?"true":"false")})}
-tb.forEach(function(t,i){t.addEventListener("click",function(){sl.children[i].scrollIntoView({behavior:"smooth",block:"nearest",inline:"start"});sel(i)})});
-sl.addEventListener("scroll",function(){sel(Math.round(sl.scrollLeft/(sl.clientWidth+14)))},{passive:true});
+function setTab(i){tb.forEach(function(t,j){t.setAttribute("aria-selected",i===j?"true":"false")})}
+tb.forEach(function(t,i){t.addEventListener("click",function(){sl.children[i].scrollIntoView({behavior:"smooth",block:"nearest",inline:"start"});setTab(i)})});
+sl.addEventListener("scroll",function(){setTab(Math.round(sl.scrollLeft/(sl.clientWidth+14)))},{passive:true});
 var sh=document.getElementById("sheet"),last=null;
 function openSheet(c){var p=P[c.getAttribute("data-phone")];if(!p)return;var car=c.querySelector("small");last=c;
 document.getElementById("sh-n").textContent=p[1]+(car?" · "+car.textContent:"");
